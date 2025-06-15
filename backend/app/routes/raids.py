@@ -1,8 +1,8 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app import db
-from app.models.raid import Raid, RaidCompletion, RaidStatus, RaidDifficulty
-from datetime import date, datetime
+from app.models.raid import Raid, RaidCompletion, RaidStatus, RaidDifficulty # Añadido RaidDifficulty
+from datetime import date, datetime, time
 
 raids_bp = Blueprint('raids', __name__)
 
@@ -12,6 +12,7 @@ def get_raids():
     current_user_id = get_jwt_identity()
     campaign_id = request.args.get('campaign_id')
     
+    # Removido el filtro is_active=True para mostrar todos los raids
     query = Raid.query.filter_by(user_id=current_user_id)
     
     if campaign_id:
@@ -36,9 +37,10 @@ def create_raid():
         duration=data['duration'],
         user_id=current_user_id,
         campaign_id=data['campaign_id'],
-        is_active=data.get('is_active', True)  
+        is_active=data.get('is_active', True)  # Añadido: leer is_active del request
     )
 
+    # Añadido: Manejo de la dificultad
     if 'difficulty' in data:
         raid.difficulty = RaidDifficulty(data['difficulty'])
 
@@ -47,6 +49,7 @@ def create_raid():
     
     return jsonify(raid.to_dict()), 201
 
+# Añadido: GET para una sola Raid
 @raids_bp.route('/<int:raid_id>', methods=['GET'])
 @jwt_required()
 def get_raid(raid_id):
@@ -54,6 +57,7 @@ def get_raid(raid_id):
     raid = Raid.query.filter_by(id=raid_id, user_id=current_user_id).first_or_404()
     return jsonify(raid.to_dict())
 
+# Añadido: PUT para actualizar una Raid
 @raids_bp.route('/<int:raid_id>', methods=['PUT'])
 @jwt_required()
 def update_raid(raid_id):
@@ -77,6 +81,7 @@ def update_raid(raid_id):
     db.session.commit()
     return jsonify(raid.to_dict())
 
+# Añadido: DELETE para eliminar una Raid
 @raids_bp.route('/<int:raid_id>', methods=['DELETE'])
 @jwt_required()
 def delete_raid(raid_id):
@@ -115,6 +120,7 @@ def complete_raid(raid_id):
     else:
         completion.status = RaidStatus.COMPLETED
     
+    # Award XP to user
     raid.user.add_xp(abs(raid.energy_value))
     db.session.commit()
     
@@ -150,6 +156,7 @@ def skip_raid(raid_id):
     db.session.commit()
     return jsonify(completion.to_dict())
 
+# Agregar al final del archivo existente
 
 @raids_bp.route('/<int:raid_id>/undo', methods=['POST'])
 @jwt_required()
@@ -181,10 +188,11 @@ def get_today_raids():
     current_user_id = get_jwt_identity()
     campaign_id = request.args.get('campaign_id')
     
-
+    # Obtener día de la semana actual
+    # Convertir de Python weekday (0=Monday) a JavaScript getDay() (0=Sunday)
     today = date.today()
-    python_weekday = today.weekday() 
-    js_weekday = (python_weekday + 1) % 7
+    python_weekday = today.weekday()  # 0=Monday, 6=Sunday
+    js_weekday = (python_weekday + 1) % 7  # 0=Sunday, 6=Saturday
     
     query = Raid.query.filter_by(
         user_id=current_user_id, 
@@ -197,10 +205,12 @@ def get_today_raids():
     
     raids = query.order_by(Raid.start_time).all()
     
+    # Agregar estado de hoy a cada raid
     result = []
     for raid in raids:
         raid_dict = raid.to_dict()
         
+        # Verificar si ya fue completado hoy
         completion = RaidCompletion.query.filter_by(
             raid_id=raid.id,
             completion_date=today

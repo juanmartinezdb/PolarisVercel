@@ -17,7 +17,7 @@ import rumorIcon from '../../assets/images/types/rumor.png';
 
 import './Modal.css';
 
-const TIMEZONE_OFFSET_HOURS = 2; 
+const TIMEZONE_OFFSET_HOURS = 2; // CEST es UTC+2
 const DEFAULT_TIME = '12:00';
 
 const ELEMENT_TYPES = {
@@ -53,6 +53,7 @@ const UnifiedElementModal = ({
   const [formData, setFormData] = useState(() => {
     if (mode === 'edit' && editItem) {
       const processedItem = { ...editItem };
+      // Convertir start_time de formato ISO (HH:MM:SS) a formato HH:MM para TimeSlider
       if (processedItem.start_time && processedItem.start_time.includes(':')) {
         const timeParts = processedItem.start_time.split(':');
         processedItem.start_time = `${timeParts[0]}:${timeParts[1]}`;
@@ -60,6 +61,7 @@ const UnifiedElementModal = ({
       return processedItem;
     }
     if (mode === 'create' && editItem) {
+      // Para modo create con datos pre-llenados (como fecha/hora desde time slot)
       const initialData = getInitialFormData(elementType);
       return { ...initialData, ...editItem };
     }
@@ -80,12 +82,14 @@ const UnifiedElementModal = ({
     if (elementType) {
       if (mode === 'edit' && editItem) {
         const processedItem = { ...editItem };
+        // Convertir start_time de formato ISO (HH:MM:SS) a formato HH:MM para TimeSlider
         if (processedItem.start_time && processedItem.start_time.includes(':')) {
           const timeParts = processedItem.start_time.split(':');
           processedItem.start_time = `${timeParts[0]}:${timeParts[1]}`;
         }
         setFormData(processedItem);
       } else if (mode === 'create' && editItem) {
+        // Para modo create con datos pre-llenados (como fecha/hora desde time slot)
         const initialData = getInitialFormData(elementType);
         setFormData({ ...initialData, ...editItem });
       } else {
@@ -122,6 +126,7 @@ const UnifiedElementModal = ({
     }
   };
 
+  // Actualizar campaña seleccionada cuando cambie campaign_id
   useEffect(() => {
     if (formData.campaign_id && campaigns.length > 0) {
       const campaign = campaigns.find(c => c.id === parseInt(formData.campaign_id));
@@ -356,11 +361,17 @@ const UnifiedElementModal = ({
     try {
       const submitData = { ...formData };
       
+      // Ajustar zona horaria para campos de tiempo
       if (submitData.due_time && submitData.due_date) {
+        // Para closed quests: combinar fecha y hora y ajustar para CEST
         const combinedDateTime = new Date(`${submitData.due_date}T${submitData.due_time}`);
+        // Ajustar 2 horas para compensar la conversión CEST -> UTC
         combinedDateTime.setHours(combinedDateTime.getHours() + TIMEZONE_OFFSET_HOURS);
         submitData.due_time = combinedDateTime.toTimeString().slice(0, 5); // HH:MM format
       }
+      
+      // Para raids: NO ajustar la hora ya que solo se maneja hora sin fecha
+      // El ajuste de zona horaria solo es necesario cuando se combina fecha + hora
       
       if ([ELEMENT_TYPES.OPEN_QUEST, ELEMENT_TYPES.CLOSED_QUEST, ELEMENT_TYPES.COMMISSION, ELEMENT_TYPES.RUMOR].includes(elementType)) {
         submitData.task_type = elementType === ELEMENT_TYPES.OPEN_QUEST ? 'open_quest' : 
@@ -649,7 +660,10 @@ const UnifiedElementModal = ({
                 <select
                   id="day_of_week"
                   value={formData.day_of_week || ''}
-                  onChange={(e) => handleInputChange('day_of_week', parseInt(e.target.value) || null)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    handleInputChange('day_of_week', value === '' ? null : parseInt(value));
+                  }}
                 >
                   <option value="">Seleccionar día</option>
                   <option value="1">Lunes</option>
@@ -764,6 +778,7 @@ const UnifiedElementModal = ({
               </h2>
               <div className="modal-subtitle">
                 <span className="modal-type">{ELEMENT_TYPE_LABELS[elementType] || 'Elemento'}</span>
+                {/* Mostrar campaña seleccionada con badge */}
                 {selectedCampaign && elementType !== ELEMENT_TYPES.CAMPAIGNS && (
                   <span 
                     className="modal-campaign-badge"
@@ -816,10 +831,11 @@ const UnifiedElementModal = ({
 
 export default UnifiedElementModal;
 
+  // Función auxiliar para ajustar zona horaria
   const adjustTimeForTimezone = (timeString, offsetHours = TIMEZONE_OFFSET_HOURS) => {
     if (!timeString) return timeString;
     
     const timeDate = new Date(`2000-01-01T${timeString}`);
     timeDate.setHours(timeDate.getHours() + offsetHours);
-    return timeDate.toTimeString().slice(0, 5);
+    return timeDate.toTimeString().slice(0, 5); // HH:MM format
   };
