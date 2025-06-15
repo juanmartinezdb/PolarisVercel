@@ -87,18 +87,18 @@ def update_avatar():
                 file_path = os.path.join(avatar_dir, filename)
                 
                 # Procesar imagen con PIL
-                    image = Image.open(file)
-                    if image.mode in ('RGBA', 'LA', 'P'):
-                        background = Image.new('RGB', image.size, (255, 255, 255))
-                        if image.mode == 'P':
-                            image = image.convert('RGBA')
-                        background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
-                        image = background
-                    
-                    max_size = (500, 500)
-                    image.thumbnail(max_size, Image.Resampling.LANCZOS)
-                    
-                    image.save(file_path, format='JPEG' if file_ext in ['jpg', 'jpeg'] else 'PNG', quality=85)
+                image = Image.open(file)
+                if image.mode in ('RGBA', 'LA', 'P'):
+                    background = Image.new('RGB', image.size, (255, 255, 255))
+                    if image.mode == 'P':
+                        image = image.convert('RGBA')
+                    background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
+                    image = background
+                
+                max_size = (500, 500)
+                image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                
+                image.save(file_path, format='JPEG' if file_ext in ['jpg', 'jpeg'] else 'PNG', quality=85)
                 
                 avatar_url = f'/assets/images/avatars/{filename}'
                 
@@ -140,19 +140,19 @@ def update_avatar():
                 file_path = os.path.join(avatar_dir, filename)
                 
                 # Procesar imagen con PIL
-                    image = Image.open(response.raw)
-                    
-                    if image.mode in ('RGBA', 'LA', 'P'):
-                        background = Image.new('RGB', image.size, (255, 255, 255))
-                        if image.mode == 'P':
-                            image = image.convert('RGBA')
-                        background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
-                        image = background
-                    
-                    max_size = (500, 500)
-                    image.thumbnail(max_size, Image.Resampling.LANCZOS)
-                    
-                    image.save(file_path, format='JPEG' if ext == 'jpg' else 'PNG', quality=85)
+                image = Image.open(response.raw)
+                
+                if image.mode in ('RGBA', 'LA', 'P'):
+                    background = Image.new('RGB', image.size, (255, 255, 255))
+                    if image.mode == 'P':
+                        image = image.convert('RGBA')
+                    background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
+                    image = background
+                
+                max_size = (500, 500)
+                image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                
+                image.save(file_path, format='JPEG' if ext == 'jpg' else 'PNG', quality=85)
                 
                 avatar_url = f'/assets/images/avatars/{filename}'
                 
