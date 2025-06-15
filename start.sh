@@ -3,6 +3,9 @@
 # Cambiar al directorio del backend
 cd backend
 
+# Activar entorno virtual
+source venv/bin/activate
+
 # Ejecutar migraciones si existen
 if [ -d "migrations" ]; then
     echo "Ejecutando migraciones de base de datos..."

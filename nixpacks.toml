@@ -1,9 +1,11 @@
 [phases.setup]
-nixPkgs = ['python39', 'python39Packages.pip']
+nixPkgs = ['python39', 'python39Packages.pip', 'python39Packages.virtualenv']
 
 [phases.install]
 cmds = [
   'cd backend',
+  'python -m venv venv',
+  'source venv/bin/activate',
   'pip install -r requirements.txt'
 ]
 
@@ -11,4 +13,4 @@ cmds = [
 cmds = ['echo "Build phase completed"']
 
 [start]
-cmd = 'cd backend && python app.py'
+cmd = 'cd backend && source venv/bin/activate && python app.py'
