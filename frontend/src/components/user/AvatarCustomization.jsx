@@ -6,20 +6,18 @@ import LoadingSpinner from '../ui/LoadingSpinner';
 import { getImagePath } from '../../utils/imageUtils';
 import './AvatarCustomization.css';
 
-// Importar avatares predefinidos
-import def1 from '../../assets/images/avatars/def1.svg';
-import def2 from '../../assets/images/avatars/def2.svg';
-import def3 from '../../assets/images/avatars/def3.svg';
-
+// Avatares predefinidos usando rutas públicas
 const PRESET_AVATARS = [
-  def1, def2, def3
+  '/assets/images/avatars/def1.svg',
+  '/assets/images/avatars/def2.svg',
+  '/assets/images/avatars/def3.svg'
 ];
 
 // Mapeo de avatares a nombres de archivo para el backend
 const PRESET_AVATAR_NAMES = {
-  [def1]: 'def1.svg',
-  [def2]: 'def2.svg',
-  [def3]: 'def3.svg'
+  '/assets/images/avatars/def1.svg': 'def1.svg',
+  '/assets/images/avatars/def2.svg': 'def2.svg',
+  '/assets/images/avatars/def3.svg': 'def3.svg'
 };
 
 const AVATAR_UPLOAD_LIMITS = {
