@@ -22,15 +22,17 @@ def create_app():
     allowed_origins = [
         "http://localhost:5173", 
         "http://127.0.0.1:5173",
-        "https://*.vercel.app",
-        "https://your-frontend-domain.vercel.app"  # Reemplazar con tu dominio real
+        "https://polaris-vercel2-juanmartinezdbs-projects.vercel.app",
+        "https://polaris-vercel2.vercel.app",
+        "https://polaris-vercel2-git-main-juanmartinezdbs-projects.vercel.app"
     ]
     
     # En producción, permitir solo dominios específicos
     if os.environ.get('FLASK_ENV') == 'production':
         allowed_origins = [
-            "https://*.vercel.app",
-            "https://your-frontend-domain.vercel.app"  # Reemplazar con tu dominio real
+            "https://polaris-vercel2-juanmartinezdbs-projects.vercel.app",
+            "https://polaris-vercel2.vercel.app",
+            "https://polaris-vercel2-git-main-juanmartinezdbs-projects.vercel.app"
         ]
     
     CORS(app, 
