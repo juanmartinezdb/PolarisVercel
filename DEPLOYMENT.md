@@ -120,7 +120,6 @@ pip install -r requirements.txt
 python app.py
 
 # Frontend
-cd frontend
 npm install
 npm run dev
 ```
@@ -128,7 +127,6 @@ npm run dev
 ### Para build de producción:
 ```bash
 # Frontend
-cd frontend
 npm run build
 ```
 
