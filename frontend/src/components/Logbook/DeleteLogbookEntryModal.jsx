@@ -1,5 +1,8 @@
 import React from 'react';
+import { STATUS_ICONS } from '../../utils/imageUtils';
 import '../ui/Modal.css';
+
+const deleteIcon = STATUS_ICONS.delete;
 
 const DeleteLogbookEntryModal = ({ entry, onConfirm, onClose }) => {
   const getEntryName = () => {
@@ -10,7 +13,7 @@ const DeleteLogbookEntryModal = ({ entry, onConfirm, onClose }) => {
     <div className="modal-overlay" onClick={onClose} style={{ alignItems: 'flex-start', paddingTop: '120px' }}>
       <div className="modal-content delete-modal" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2><img src="/src/assets/images/delete.png" alt="Eliminar" style={{width: '24px', height: '24px', marginRight: '8px'}} /> Confirmar Eliminación</h2>
+          <h2><img src={deleteIcon} alt="Eliminar" style={{width: '24px', height: '24px', marginRight: '8px'}} /> Confirmar Eliminación</h2>
           <button className="modal-close" onClick={onClose}>×</button>
         </div>
         

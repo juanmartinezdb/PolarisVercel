@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { STATUS_ICONS } from '../../utils/imageUtils';
 import './Modal.css';
 import './CampaignDeleteModal.css';
+
+const deleteIcon = STATUS_ICONS.delete;
 
 const CampaignDeleteModal = ({ campaign, onConfirm, onClose }) => {
   const [transferItems, setTransferItems] = useState(true);
@@ -13,7 +16,7 @@ const CampaignDeleteModal = ({ campaign, onConfirm, onClose }) => {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content delete-modal campaign-delete-modal" onClick={e => e.stopPropagation()}>
         <div className="modal-header">
-          <h2><img src="/src/assets/images/delete.png" alt="Eliminar" style={{width: '48px', height: '48px', marginRight: '12px'}} /> Eliminar Campaña</h2>
+          <h2><img src={deleteIcon} alt="Eliminar" style={{width: '48px', height: '48px', marginRight: '12px'}} /> Eliminar Campaña</h2>
           <button className="modal-close" onClick={onClose}>×</button>
         </div>
         
@@ -61,7 +64,7 @@ const CampaignDeleteModal = ({ campaign, onConfirm, onClose }) => {
                   onChange={() => setTransferItems(false)}
                 />
                 <div className="option-content">
-                  <div className="option-title"><img src="/src/assets/images/delete.png" alt="Eliminar" style={{width: '32px', height: '32px', marginRight: '8px'}} /> Eliminar todo</div>
+                  <div className="option-title"><img src={deleteIcon} alt="Eliminar" style={{width: '32px', height: '32px', marginRight: '8px'}} /> Eliminar todo</div>
                   <div className="option-description">
                     Se eliminará todo el contenido de la campaña incluyendo tareas, 
                     dailies, raids y el logbook.

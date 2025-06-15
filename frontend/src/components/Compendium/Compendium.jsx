@@ -29,14 +29,16 @@ const ELEMENT_TYPE_LABELS = {
   [ELEMENT_TYPES.RUMOR]: 'Rumores'
 };
 
-const ELEMENT_TYPE_ICONS = {
-  [ELEMENT_TYPES.CAMPAIGNS]: '/src/assets/images/types/campaigns.png',
-  [ELEMENT_TYPES.OPEN_QUEST]: '/src/assets/images/types/openquest.png',
-  [ELEMENT_TYPES.CLOSED_QUEST]: '/src/assets/images/types/closedquest.png',
-  [ELEMENT_TYPES.DAILIES]: '/src/assets/images/types/dailies.png',
-  [ELEMENT_TYPES.RAIDS]: '/src/assets/images/types/raid.png',
-  [ELEMENT_TYPES.COMMISSION]: '/src/assets/images/types/commission.png',
-  [ELEMENT_TYPES.RUMOR]: '/src/assets/images/types/rumor.png'
+import { ELEMENT_TYPE_ICONS } from '../../utils/imageUtils';
+
+const ELEMENT_TYPE_ICON_MAP = {
+  [ELEMENT_TYPES.CAMPAIGNS]: ELEMENT_TYPE_ICONS.campaigns,
+  [ELEMENT_TYPES.OPEN_QUEST]: ELEMENT_TYPE_ICONS.open_quest,
+  [ELEMENT_TYPES.CLOSED_QUEST]: ELEMENT_TYPE_ICONS.closed_quest,
+  [ELEMENT_TYPES.DAILIES]: ELEMENT_TYPE_ICONS.dailies,
+  [ELEMENT_TYPES.RAIDS]: ELEMENT_TYPE_ICONS.raids,
+  [ELEMENT_TYPES.COMMISSION]: ELEMENT_TYPE_ICONS.commission,
+  [ELEMENT_TYPES.RUMOR]: ELEMENT_TYPE_ICONS.rumor
 };
 
 const Compendium = () => {
@@ -532,11 +534,7 @@ const Compendium = () => {
               className={`nav-tab ${selectedType === value ? 'active' : ''}`}
               onClick={() => setSelectedType(value)}
             >
-              {ELEMENT_TYPE_ICONS[value].startsWith('/') ? (
-                <img className="tab-icon" src={ELEMENT_TYPE_ICONS[value]} alt={ELEMENT_TYPE_LABELS[value]} />
-              ) : (
-                <span className="tab-icon">{ELEMENT_TYPE_ICONS[value]}</span>
-              )}
+              <img className="tab-icon" src={ELEMENT_TYPE_ICON_MAP[value]} alt={ELEMENT_TYPE_LABELS[value]} />
               <span className="tab-label">{ELEMENT_TYPE_LABELS[value]}</span>
             </button>
           ))}
@@ -551,11 +549,7 @@ const Compendium = () => {
       <div className="compendium-content">
         <div className="compendium-section-header">
           <h2 className="section-title">
-            {ELEMENT_TYPE_ICONS[selectedType].startsWith('/') ? (
-              <img className="section-icon" src={ELEMENT_TYPE_ICONS[selectedType]} alt={ELEMENT_TYPE_LABELS[selectedType]} />
-            ) : (
-              <span className="section-icon">{ELEMENT_TYPE_ICONS[selectedType]}</span>
-            )}
+            <img className="section-icon" src={ELEMENT_TYPE_ICON_MAP[selectedType]} alt={ELEMENT_TYPE_LABELS[selectedType]} />
             {ELEMENT_TYPE_LABELS[selectedType]}
           </h2>
           <div className="section-stats">

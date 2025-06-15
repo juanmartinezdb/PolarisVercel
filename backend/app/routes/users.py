@@ -49,9 +49,15 @@ def update_avatar():
     current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
     
-    backend_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-    avatar_dir = os.path.join(backend_root, '..', 'frontend', 'src', 'assets', 'images', 'avatars')
-    avatar_dir = os.path.abspath(avatar_dir)
+    # En producción, usar un directorio temporal o servicio de almacenamiento
+    if os.environ.get('FLASK_ENV') == 'production':
+        # Para Railway, usar directorio temporal
+        avatar_dir = os.path.join('/tmp', 'avatars')
+    else:
+        # En desarrollo, usar el directorio del frontend
+        backend_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
+        avatar_dir = os.path.join(backend_root, '..', 'frontend', 'src', 'assets', 'images', 'avatars')
+        avatar_dir = os.path.abspath(avatar_dir)
     
     os.makedirs(avatar_dir, exist_ok=True)
     

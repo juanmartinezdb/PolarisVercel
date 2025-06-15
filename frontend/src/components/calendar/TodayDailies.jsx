@@ -4,12 +4,12 @@ import { useToast } from '../../contexts/ToastContext'
 import LoadingSpinner from '../ui/LoadingSpinner'
 import './TodayDailies.css'
 
-// Importar las imágenes de estado
-import pendingIcon from '../../assets/images/pending.png'
-import completedIcon from '../../assets/images/completed.png'
-import skippedIcon from '../../assets/images/skipped.png'
-// Importar icono de panel
-import dailiesIcon from '../../assets/images/types/dailies.png'
+import { ELEMENT_TYPE_ICONS, STATUS_ICONS } from '../../utils/imageUtils';
+
+const pendingIcon = STATUS_ICONS.pending;
+const completedIcon = STATUS_ICONS.completed;
+const skippedIcon = STATUS_ICONS.skipped;
+const dailiesIcon = ELEMENT_TYPE_ICONS.dailies;
 
 const TodayDailies = ({ selectedCampaign }) => {
   const { showSuccess, showError } = useToast()

@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { getContrastColor } from '../../utils/colorUtils';
 import { taskService } from '../../services/taskService';
 import { useToast } from '../../contexts/ToastContext';
+import { STATUS_ICONS } from '../../utils/imageUtils';
 import ItemModal from '../ui/ItemModal';
 import './CompendiumTable.css';
+
+const editIcon = STATUS_ICONS.edit;
+const deleteIcon = STATUS_ICONS.delete;
 
 const CompendiumTable = ({ data, columns, sortConfig, onSort, elementType, onEdit, onDelete, onRefresh }) => {
   const { showSuccess, showError } = useToast();
@@ -75,7 +79,7 @@ const CompendiumTable = ({ data, columns, sortConfig, onSort, elementType, onEdi
             onClick={() => onEdit && onEdit(item)}
             title="Editar"
           >
-            <img src="/src/assets/images/edit.png" alt="Editar" className="action-icon" />
+            <img src={editIcon} alt="Editar" className="action-icon" />
           </button>
           {!isStoryMode && (
             <button 
@@ -83,7 +87,7 @@ const CompendiumTable = ({ data, columns, sortConfig, onSort, elementType, onEdi
               onClick={() => onDelete && onDelete(item)}
               title="Eliminar"
             >
-              <img src="/src/assets/images/delete.png" alt="Eliminar" className="action-icon" />
+              <img src={deleteIcon} alt="Eliminar" className="action-icon" />
             </button>
           )}
         </div>

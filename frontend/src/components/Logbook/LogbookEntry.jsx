@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import DeleteLogbookEntryModal from './DeleteLogbookEntryModal';
+import { STATUS_ICONS } from '../../utils/imageUtils';
 import './LogbookEntry.css';
+
+const editIcon = STATUS_ICONS.edit;
+const deleteIcon = STATUS_ICONS.delete;
 
 const MARKDOWN_COMPONENTS = {
   h1: ({ children }) => <h1 className="logbook-entry-h1">{children}</h1>,
@@ -87,14 +91,14 @@ const LogbookEntry = ({ entry, onEdit, onDelete, onBack, isEditable = true }) =>
                 onClick={handleEdit}
                 title="Editar entrada"
               >
-                <img src="/src/assets/images/edit.png" alt="Editar" className="logbook-entry-action-icon" />
+                <img src={editIcon} alt="Editar" className="logbook-entry-action-icon" />
               </button>
               <button 
                 className="logbook-entry-action-btn delete"
                 onClick={handleDelete}
                 title="Eliminar entrada"
               >
-                <img src="/src/assets/images/delete.png" alt="Eliminar" className="logbook-entry-action-icon" />
+                <img src={deleteIcon} alt="Eliminar" className="logbook-entry-action-icon" />
               </button>
             </div>
           )}

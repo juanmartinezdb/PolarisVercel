@@ -6,8 +6,10 @@ import LoadingSpinner from '../ui/LoadingSpinner'
 import FormModal from '../ui/FormModal'
 import './TodayRaids.css'
 // Importar icono de panel
-import raidIcon from '../../assets/images/types/raid.png'
-import skippedIcon from '../../assets/images/skipped.png'
+import { ELEMENT_TYPE_ICONS, STATUS_ICONS, getRaidIcon, getRaidStatusIcon } from '../../utils/imageUtils';
+
+const raidIcon = ELEMENT_TYPE_ICONS.raids;
+const skippedIcon = STATUS_ICONS.skipped;
 
 const TodayRaids = ({ selectedCampaign }) => {
   const { showSuccess, showError } = useToast()
@@ -141,11 +143,11 @@ const TodayRaids = ({ selectedCampaign }) => {
   const getRaidImage = (difficulty, energyValue) => {
     const energyType = energyValue >= 0 ? 'positive' : 'negative'
     const difficultyName = difficulty || 'easy'
-    return `/src/assets/images/raids/${difficultyName}-raid-${energyType}.png`
+    return getRaidIcon(difficulty, energyValue)
   }
 
   const getDefeatedImage = () => {
-    return '/src/assets/images/raids/defeated.png'
+    return getRaidStatusIcon('defeated')
   }
 
   const getStatusDisplay = (status) => {

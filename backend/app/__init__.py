@@ -1,3 +1,4 @@
+import os
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
@@ -18,8 +19,22 @@ def create_app():
     jwt.init_app(app) 
     
     # Configure CORS with specific settings
+    allowed_origins = [
+        "http://localhost:5173", 
+        "http://127.0.0.1:5173",
+        "https://*.vercel.app",
+        "https://your-frontend-domain.vercel.app"  # Reemplazar con tu dominio real
+    ]
+    
+    # En producción, permitir solo dominios específicos
+    if os.environ.get('FLASK_ENV') == 'production':
+        allowed_origins = [
+            "https://*.vercel.app",
+            "https://your-frontend-domain.vercel.app"  # Reemplazar con tu dominio real
+        ]
+    
     CORS(app, 
-         origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+         origins=allowed_origins,
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
          allow_headers=["Content-Type", "Authorization"],
          supports_credentials=True)

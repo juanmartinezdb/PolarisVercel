@@ -6,11 +6,13 @@ const BURNOUT_THRESHOLD = 40;
 const PROCRASTINATION_THRESHOLD = 60;
 
 // Rutas de las imágenes de indicadores
+import { BALANCE_ICONS } from '../../utils/imageUtils';
+
 const INDICATOR_IMAGE_SOURCES = {
-  BURNOUT: '/src/assets/images/burned.png',
-  EQUILIBRIUM: '/src/assets/images/balance.png',
-  PROCRASTINATION: '/src/assets/images/lazy.png',
-  NEUTRAL: '/src/assets/images/balance.png'
+  BURNOUT: BALANCE_ICONS.BURNOUT,
+  EQUILIBRIUM: BALANCE_ICONS.EQUILIBRIUM,
+  PROCRASTINATION: BALANCE_ICONS.PROCRASTINATION,
+  NEUTRAL: BALANCE_ICONS.NEUTRAL
 };
 
 const BALANCE_STATES = {

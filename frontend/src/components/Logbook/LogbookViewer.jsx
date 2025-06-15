@@ -4,7 +4,10 @@ import logbookService from '../../services/logbookService';
 import { useToast } from '../../contexts/ToastContext';
 import LogbookEntry from './LogbookEntry';
 import LogbookEditor from './LogbookEditor';
+import { STATUS_ICONS } from '../../utils/imageUtils';
 import './LogbookViewer.css';
+
+const spellBookIcon = STATUS_ICONS.spellBook;
 
 const LogbookViewer = ({ campaign, onBack }) => {
   const [entries, setEntries] = useState([]);
@@ -200,7 +203,7 @@ const LogbookViewer = ({ campaign, onBack }) => {
         {filteredEntries.length === 0 ? (
           <div className="empty-entries">
             <div className="empty-book-icon">
-              <img src="/src/assets/images/spell-book.png" alt="Spell Book" />
+              <img src={spellBookIcon} alt="Spell Book" />
             </div>
           </div>
         ) : (

@@ -15,10 +15,24 @@ export default defineConfig({
   },
 
   build: {
-    sourcemap: true,
+    sourcemap: false,
+    outDir: 'dist',
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          ui: ['@chakra-ui/react', '@emotion/react', '@emotion/styled'],
+        },
+      },
+    },
   },
 
   optimizeDeps: {
     include: ['react', 'react-dom'],
   },
+
+  // Configuración para Vercel
+  base: '/',
 })
