@@ -8,21 +8,33 @@ import './AvatarCustomization.css';
 
 // Avatares predefinidos usando rutas públicas
 const PRESET_AVATARS = [
-  '/assets/images/avatars/def1.svg',
-  '/assets/images/avatars/def2.svg',
-  '/assets/images/avatars/def3.svg'
+  '/assets/images/avatars/def2.jpeg',
+  '/assets/images/avatars/def3.jpeg',
+  '/assets/images/avatars/def4.jpeg',
+  '/assets/images/avatars/def5.jpeg',
+  '/assets/images/avatars/def6.jpeg',
+  '/assets/images/avatars/def7.jpeg',
+  '/assets/images/avatars/def8.jpeg',
+  '/assets/images/avatars/def9.jpeg',
+  '/assets/images/avatars/def10.jpeg'
 ];
 
 // Mapeo de avatares a nombres de archivo para el backend
 const PRESET_AVATAR_NAMES = {
-  '/assets/images/avatars/def1.svg': 'def1.svg',
-  '/assets/images/avatars/def2.svg': 'def2.svg',
-  '/assets/images/avatars/def3.svg': 'def3.svg'
+  '/assets/images/avatars/def2.jpeg': 'def2.jpeg',
+  '/assets/images/avatars/def3.jpeg': 'def3.jpeg',
+  '/assets/images/avatars/def4.jpeg': 'def4.jpeg',
+  '/assets/images/avatars/def5.jpeg': 'def5.jpeg',
+  '/assets/images/avatars/def6.jpeg': 'def6.jpeg',
+  '/assets/images/avatars/def7.jpeg': 'def7.jpeg',
+  '/assets/images/avatars/def8.jpeg': 'def8.jpeg',
+  '/assets/images/avatars/def9.jpeg': 'def9.jpeg',
+  '/assets/images/avatars/def10.jpeg': 'def10.jpeg'
 };
 
 const AVATAR_UPLOAD_LIMITS = {
   MAX_SIZE_MB: 5,
-  ALLOWED_TYPES: ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml']
+  ALLOWED_TYPES: ['image/jpeg', 'image/jpg', 'image/png']
 };
 
 const AvatarCustomization = ({ isOpen, onClose, onAvatarUpdate, currentAvatar }) => {
@@ -35,7 +47,7 @@ const AvatarCustomization = ({ isOpen, onClose, onAvatarUpdate, currentAvatar })
 
   const validateFile = (file) => {
     if (!AVATAR_UPLOAD_LIMITS.ALLOWED_TYPES.includes(file.type)) {
-      showToast('Tipo de archivo no válido. Use JPG, PNG, GIF o WebP.', 'error');
+      showToast('Tipo de archivo no válido. Use JPG, JPEG o PNG.', 'error');
       return false;
     }
 
@@ -142,7 +154,7 @@ const AvatarCustomization = ({ isOpen, onClose, onAvatarUpdate, currentAvatar })
                 <h4>Subir Imagen</h4>
               </div>
               <p className="option-description">
-                Sube tu propia imagen (máximo {AVATAR_UPLOAD_LIMITS.MAX_SIZE_MB}MB, formatos: JPG, PNG, SVG)
+                Sube tu propia imagen (máximo {AVATAR_UPLOAD_LIMITS.MAX_SIZE_MB}MB, formatos: JPG, JPEG, PNG)
               </p>
               <div className="file-input-wrapper">
                 <input

@@ -61,7 +61,7 @@ def update_avatar():
     
     os.makedirs(avatar_dir, exist_ok=True)
     
-    for ext in ['jpg', 'jpeg', 'png', 'svg']:
+    for ext in ['jpg', 'jpeg', 'png']:
         old_avatar_path = os.path.join(avatar_dir, f'user{current_user_id}.{ext}')
         if os.path.exists(old_avatar_path):
             os.remove(old_avatar_path)
@@ -70,11 +70,11 @@ def update_avatar():
         if 'file' in request.files:
             file = request.files['file']
             if file and file.filename:
-                allowed_extensions = {'jpg', 'jpeg', 'png', 'svg'}
+                allowed_extensions = {'jpg', 'jpeg', 'png'}
                 file_ext = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else ''
                 
                 if file_ext not in allowed_extensions:
-                    return jsonify({'message': 'Formato de archivo no permitido. Use JPG, JPEG, PNG o SVG.'}), 400
+                    return jsonify({'message': 'Formato de archivo no permitido. Use JPG, JPEG o PNG.'}), 400
                 
                 file.seek(0, 2)
                 file_size = file.tell()
@@ -86,11 +86,7 @@ def update_avatar():
                 filename = f'user{current_user_id}.{file_ext}'
                 file_path = os.path.join(avatar_dir, filename)
                 
-                if file_ext == 'svg':
-                    # Para archivos SVG, simplemente guardar el contenido
-                    file.save(file_path)
-                else:
-                    # Para imágenes raster, procesar con PIL
+                # Procesar imagen con PIL
                     image = Image.open(file)
                     if image.mode in ('RGBA', 'LA', 'P'):
                         background = Image.new('RGB', image.size, (255, 255, 255))
@@ -133,9 +129,7 @@ def update_avatar():
                 if not content_type.startswith('image/'):
                     return jsonify({'message': 'La URL no apunta a una imagen válida.'}), 400
                 
-                if 'svg' in content_type:
-                    ext = 'svg'
-                elif 'jpeg' in content_type or 'jpg' in content_type:
+                if 'jpeg' in content_type or 'jpg' in content_type:
                     ext = 'jpg'
                 elif 'png' in content_type:
                     ext = 'png'
@@ -145,13 +139,7 @@ def update_avatar():
                 filename = f'user{current_user_id}.{ext}'
                 file_path = os.path.join(avatar_dir, filename)
                 
-                if ext == 'svg':
-                    # Para archivos SVG, guardar directamente
-                    with open(file_path, 'wb') as f:
-                        for chunk in response.iter_content(chunk_size=8192):
-                            f.write(chunk)
-                else:
-                    # Para imágenes raster, procesar con PIL
+                # Procesar imagen con PIL
                     image = Image.open(response.raw)
                     
                     if image.mode in ('RGBA', 'LA', 'P'):

@@ -4,6 +4,24 @@
   "outputDirectory": "./dist",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
+  "routes": [
+    {
+        "src": "/",
+        "dest": "/"
+    },
+    {
+        "src": "/logbook",
+        "dest": "/"
+    },
+    {
+        "src": "/calendar",
+        "dest": "/"
+    },
+    {
+        "src": "/compendium",
+        "dest": "/"
+    }
+  ],
   "rewrites": [
     {
       "source": "/assets/(.*)",
