@@ -54,14 +54,14 @@ def update_avatar():
         # Para Railway, usar directorio temporal
         avatar_dir = os.path.join('/tmp', 'avatars')
     else:
-        # En desarrollo, usar el directorio del frontend
+        # En desarrollo, usar el directorio público del frontend
         backend_root = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
-        avatar_dir = os.path.join(backend_root, '..', 'frontend', 'src', 'assets', 'images', 'avatars')
+        avatar_dir = os.path.join(backend_root, '..', 'frontend', 'public', 'assets', 'images', 'avatars')
         avatar_dir = os.path.abspath(avatar_dir)
     
     os.makedirs(avatar_dir, exist_ok=True)
     
-    for ext in ['jpg', 'jpeg', 'png']:
+    for ext in ['jpg', 'jpeg', 'png', 'svg']:
         old_avatar_path = os.path.join(avatar_dir, f'user{current_user_id}.{ext}')
         if os.path.exists(old_avatar_path):
             os.remove(old_avatar_path)
@@ -70,11 +70,11 @@ def update_avatar():
         if 'file' in request.files:
             file = request.files['file']
             if file and file.filename:
-                allowed_extensions = {'jpg', 'jpeg', 'png'}
+                allowed_extensions = {'jpg', 'jpeg', 'png', 'svg'}
                 file_ext = file.filename.rsplit('.', 1)[1].lower() if '.' in file.filename else ''
                 
                 if file_ext not in allowed_extensions:
-                    return jsonify({'message': 'Formato de archivo no permitido. Use JPG, JPEG o PNG.'}), 400
+                    return jsonify({'message': 'Formato de archivo no permitido. Use JPG, JPEG, PNG o SVG.'}), 400
                 
                 file.seek(0, 2)
                 file_size = file.tell()
@@ -86,20 +86,25 @@ def update_avatar():
                 filename = f'user{current_user_id}.{file_ext}'
                 file_path = os.path.join(avatar_dir, filename)
                 
-                image = Image.open(file)
-                if image.mode in ('RGBA', 'LA', 'P'):
-                    background = Image.new('RGB', image.size, (255, 255, 255))
-                    if image.mode == 'P':
-                        image = image.convert('RGBA')
-                    background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
-                    image = background
+                if file_ext == 'svg':
+                    # Para archivos SVG, simplemente guardar el contenido
+                    file.save(file_path)
+                else:
+                    # Para imágenes raster, procesar con PIL
+                    image = Image.open(file)
+                    if image.mode in ('RGBA', 'LA', 'P'):
+                        background = Image.new('RGB', image.size, (255, 255, 255))
+                        if image.mode == 'P':
+                            image = image.convert('RGBA')
+                        background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
+                        image = background
+                    
+                    max_size = (500, 500)
+                    image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                    
+                    image.save(file_path, format='JPEG' if file_ext in ['jpg', 'jpeg'] else 'PNG', quality=85)
                 
-                max_size = (500, 500)
-                image.thumbnail(max_size, Image.Resampling.LANCZOS)
-                
-                image.save(file_path, format='JPEG' if file_ext in ['jpg', 'jpeg'] else 'PNG', quality=85)
-                
-                avatar_url = f'src/assets/images/avatars/{filename}'
+                avatar_url = f'/assets/images/avatars/{filename}'
                 
         elif request.json and 'preset' in request.json:
             preset_name = request.json['preset']
@@ -115,7 +120,7 @@ def update_avatar():
             
             shutil.copy2(preset_path, user_avatar_path)
             
-            avatar_url = f'src/assets/images/avatars/{user_filename}'
+            avatar_url = f'/assets/images/avatars/{user_filename}'
             
         elif request.json and 'url' in request.json:
             url = request.json['url']
@@ -128,7 +133,9 @@ def update_avatar():
                 if not content_type.startswith('image/'):
                     return jsonify({'message': 'La URL no apunta a una imagen válida.'}), 400
                 
-                if 'jpeg' in content_type or 'jpg' in content_type:
+                if 'svg' in content_type:
+                    ext = 'svg'
+                elif 'jpeg' in content_type or 'jpg' in content_type:
                     ext = 'jpg'
                 elif 'png' in content_type:
                     ext = 'png'
@@ -138,21 +145,28 @@ def update_avatar():
                 filename = f'user{current_user_id}.{ext}'
                 file_path = os.path.join(avatar_dir, filename)
                 
-                image = Image.open(response.raw)
+                if ext == 'svg':
+                    # Para archivos SVG, guardar directamente
+                    with open(file_path, 'wb') as f:
+                        for chunk in response.iter_content(chunk_size=8192):
+                            f.write(chunk)
+                else:
+                    # Para imágenes raster, procesar con PIL
+                    image = Image.open(response.raw)
+                    
+                    if image.mode in ('RGBA', 'LA', 'P'):
+                        background = Image.new('RGB', image.size, (255, 255, 255))
+                        if image.mode == 'P':
+                            image = image.convert('RGBA')
+                        background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
+                        image = background
+                    
+                    max_size = (500, 500)
+                    image.thumbnail(max_size, Image.Resampling.LANCZOS)
+                    
+                    image.save(file_path, format='JPEG' if ext == 'jpg' else 'PNG', quality=85)
                 
-                if image.mode in ('RGBA', 'LA', 'P'):
-                    background = Image.new('RGB', image.size, (255, 255, 255))
-                    if image.mode == 'P':
-                        image = image.convert('RGBA')
-                    background.paste(image, mask=image.split()[-1] if image.mode == 'RGBA' else None)
-                    image = background
-                
-                max_size = (500, 500)
-                image.thumbnail(max_size, Image.Resampling.LANCZOS)
-                
-                image.save(file_path, format='JPEG' if ext == 'jpg' else 'PNG', quality=85)
-                
-                avatar_url = f'src/assets/images/avatars/{filename}'
+                avatar_url = f'/assets/images/avatars/{filename}'
                 
             except requests.RequestException:
                 return jsonify({'message': 'No se pudo descargar la imagen desde la URL.'}), 400

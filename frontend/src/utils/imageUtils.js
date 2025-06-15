@@ -3,21 +3,24 @@
 
 // Función para obtener la ruta correcta de una imagen
 export const getImagePath = (imagePath) => {
-  // Si la ruta ya es un import, la devolvemos tal como está
-  if (typeof imagePath === 'string' && !imagePath.startsWith('/src/') && !imagePath.startsWith('src/')) {
+  // Si la ruta ya es un import o una URL completa, la devolvemos tal como está
+  if (typeof imagePath === 'string' && 
+      (!imagePath.startsWith('/src/') && 
+       !imagePath.startsWith('src/') && 
+       !imagePath.includes('blob:') && 
+       !imagePath.startsWith('http'))) {
     return imagePath;
   }
   
   // Convertir rutas absolutas /src/assets/... a rutas relativas
   if (imagePath.startsWith('/src/assets/')) {
-    // En desarrollo, Vite puede manejar estas rutas
-    // En producción, necesitamos usar la ruta relativa
-    return imagePath.replace('/src/', '/');
+    // En desarrollo y producción, usar la ruta desde la raíz del proyecto
+    return imagePath.replace('/src/assets/', '/assets/');
   }
   
   // Convertir rutas src/assets/... (sin barra inicial) a rutas relativas
   if (imagePath.startsWith('src/assets/')) {
-    return '/' + imagePath.replace('src/', '');
+    return '/' + imagePath.replace('src/assets/', 'assets/');
   }
   
   return imagePath;

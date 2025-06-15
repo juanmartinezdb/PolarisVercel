@@ -1,7 +1,7 @@
 .auth-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
-  background-image: url('../assets/images/pergamino-fondo.png');
+  background-image: url('/assets/images/pergamino-fondo.png');
   background-size: cover;
   background-attachment: fixed;
   display: flex;

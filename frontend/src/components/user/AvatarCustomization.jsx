@@ -7,47 +7,24 @@ import { getImagePath } from '../../utils/imageUtils';
 import './AvatarCustomization.css';
 
 // Importar avatares predefinidos
-import def1 from '../../assets/images/avatars/def1.jpeg';
-import def2 from '../../assets/images/avatars/def2.jpeg';
-import def3 from '../../assets/images/avatars/def3.jpeg';
-import def4 from '../../assets/images/avatars/def4.jpeg';
-import def5 from '../../assets/images/avatars/def5.jpeg';
-import def6 from '../../assets/images/avatars/def6.jpeg';
-import def7 from '../../assets/images/avatars/def7.jpeg';
-import def8 from '../../assets/images/avatars/def8.jpeg';
-import def9 from '../../assets/images/avatars/def9.jpeg';
-import def10 from '../../assets/images/avatars/def10.jpeg';
+import def1 from '../../assets/images/avatars/def1.svg';
+import def2 from '../../assets/images/avatars/def2.svg';
+import def3 from '../../assets/images/avatars/def3.svg';
 
 const PRESET_AVATARS = [
-  def1,
-  def2,
-  def3,
-  def4,
-  def5,
-  def6,
-  def7,
-  def8,
-  def9,
-  def10
+  def1, def2, def3
 ];
 
 // Mapeo de avatares a nombres de archivo para el backend
 const PRESET_AVATAR_NAMES = {
-  [def1]: 'def1.jpeg',
-  [def2]: 'def2.jpeg',
-  [def3]: 'def3.jpeg',
-  [def4]: 'def4.jpeg',
-  [def5]: 'def5.jpeg',
-  [def6]: 'def6.jpeg',
-  [def7]: 'def7.jpeg',
-  [def8]: 'def8.jpeg',
-  [def9]: 'def9.jpeg',
-  [def10]: 'def10.jpeg'
+  [def1]: 'def1.svg',
+  [def2]: 'def2.svg',
+  [def3]: 'def3.svg'
 };
 
 const AVATAR_UPLOAD_LIMITS = {
   MAX_SIZE_MB: 5,
-  ALLOWED_TYPES: ['image/jpeg', 'image/png', 'image/jpg']
+  ALLOWED_TYPES: ['image/jpeg', 'image/jpg', 'image/png', 'image/svg+xml']
 };
 
 const AvatarCustomization = ({ isOpen, onClose, onAvatarUpdate, currentAvatar }) => {
@@ -167,7 +144,7 @@ const AvatarCustomization = ({ isOpen, onClose, onAvatarUpdate, currentAvatar })
                 <h4>Subir Imagen</h4>
               </div>
               <p className="option-description">
-                Sube tu propia imagen (máximo {AVATAR_UPLOAD_LIMITS.MAX_SIZE_MB}MB, formatos: JPG, PNG)
+                Sube tu propia imagen (máximo {AVATAR_UPLOAD_LIMITS.MAX_SIZE_MB}MB, formatos: JPG, PNG, SVG)
               </p>
               <div className="file-input-wrapper">
                 <input

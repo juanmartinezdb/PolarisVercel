@@ -1,1 +1,5 @@
+# Redirect all routes to index.html for SPA
 /*    /index.html   200
+
+# Serve static assets directly
+/assets/*  /assets/:splat  200
