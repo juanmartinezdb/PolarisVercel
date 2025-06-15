@@ -5,6 +5,7 @@ import { useToast } from '../../contexts/ToastContext';
 import { X, Camera, User, Mail, Calendar, Trophy, Star, Lock, Eye, EyeOff } from 'lucide-react';
 import AvatarCustomization from './AvatarCustomization';
 import LoadingSpinner from '../ui/LoadingSpinner';
+import { getImagePath } from '../../utils/imageUtils';
 import './UserProfile.css';
 
 const UserProfile = ({ isOpen, onClose }) => {
@@ -129,7 +130,7 @@ const UserProfile = ({ isOpen, onClose }) => {
             <div className="avatar-container">
               <div className="avatar-large">
                 {user?.avatar_url ? (
-                  <img src={user.avatar_url} alt={user.username} />
+                  <img src={getImagePath(user.avatar_url)} alt={user.username} />
                 ) : (
                   <div className="avatar-placeholder-large">
                     {user?.username?.charAt(0).toUpperCase()}

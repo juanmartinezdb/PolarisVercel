@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../hooks/useAuth';
-import { User, Settings, LogOut, Shield } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { User, Settings, LogOut } from 'lucide-react';
+import { getImagePath } from '../../utils/imageUtils';
 import './AvatarDropdown.css';
 
 const DROPDOWN_MENU_ITEMS = [
@@ -60,7 +62,7 @@ const AvatarDropdown = ({ onProfileClick, onSettingsClick }) => {
       >
         <div className="avatar">
           {user?.avatar_url ? (
-            <img src={user.avatar_url} alt={user.username} />
+            <img src={getImagePath(user.avatar_url)} alt={user.username} />
           ) : (
             <div className="avatar-placeholder">
               {user?.username?.charAt(0).toUpperCase()}
