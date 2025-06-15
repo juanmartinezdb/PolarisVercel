@@ -1,0 +1,56 @@
+.time-slot {
+  position: relative;
+  min-height: 32px; /* Compacto pero permite expansión */
+  border: 1px solid #444;
+  background: #1a1a1a;
+  transition: all 0.2s ease;
+  width: 100%;
+  /* Permitir expansión vertical pero mantener ancho fijo */
+  overflow-x: hidden;
+  overflow-y: visible;
+  display: flex;
+  flex-direction: column;
+}
+
+.time-slot.has-content {
+  background: #2a2a2a;
+}
+
+.time-slot:hover {
+  background: linear-gradient(135deg, #2a2a2a, #3d3d3d);
+}
+
+.time-slot.can-drop {
+  border-color: #d4af37;
+  background: linear-gradient(135deg, #2a2416, #3d3317);
+}
+
+.time-slot.drop-target {
+  border-color: #ffd700;
+  background: linear-gradient(135deg, #3d3317, #4a3f1a);
+  box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.time-slot.has-content {
+  background: linear-gradient(135deg, #2c1810, #3d2317);
+}
+
+.slot-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  /* Permitir que el contenido se expanda verticalmente */
+  overflow-x: hidden;
+  word-wrap: break-word;
+  min-height: fit-content;
+}
+
+.slot-time {
+  font-size: 0.7rem;
+  color: #666;
+  font-family: 'Crimson Text', serif;
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}

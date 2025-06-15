@@ -1,0 +1,386 @@
+.compendium-filters-compact {
+  background: linear-gradient(145deg, #2c1810, #1a0f08);
+  border: 1px solid rgba(139, 69, 19, 0.3);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.compendium-filters-compact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../assets/images/papel-viejo.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.03;
+}
+
+.filters-main-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.search-section {
+  flex: 0 0 250px;
+  min-width: 200px;
+}
+
+.compendium .search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: rgba(26, 15, 8, 0.8);
+  border: 1px solid rgba(139, 69, 19, 0.5);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #d4af37;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+
+
+.search-input-compact {
+  background: transparent;
+  border: none;
+  color: #f4e4bc;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+  font-family: 'Crimson Text', serif;
+}
+
+.search-input-compact::placeholder {
+  color: #8b7355;
+}
+
+.campaign-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.campaign-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(44, 24, 16, 0.6);
+  border: 2px solid transparent;
+  border-radius: 20px;
+  color: #f4e4bc;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.campaign-btn:hover {
+  background: rgba(44, 24, 16, 0.8);
+  border-color: var(--campaign-color, #8b4513);
+  transform: translateY(-1px);
+}
+
+.campaign-btn.selected {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--campaign-color, #d4af37);
+  color: #f4e4bc;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.campaign-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.campaign-name {
+  font-weight: 500;
+}
+
+/* External Filters */
+.external-filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+.external-filters .filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.external-filters .filter-label {
+  font-family: 'Cinzel', serif;
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin-right: 0.5rem;
+}
+
+.status-filters {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.external-filters .checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  cursor: pointer;
+  color: #f4e4bc;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+.external-filters .checkbox-label input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #d4af37;
+  cursor: pointer;
+}
+
+.active-filter {
+  padding: 0.3rem 0.6rem;
+  background: rgba(44, 24, 16, 0.6);
+  border: 1px solid rgba(139, 69, 19, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.active-filter:hover {
+  background: rgba(44, 24, 16, 0.8);
+  border-color: #d4af37;
+}
+
+/* Filter Toggle Button */
+.filter-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: linear-gradient(145deg, #2c1810, #1a0f08);
+  border: 1px solid #8b4513;
+  border-radius: 6px;
+  color: #c9a96e;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-family: 'Crimson Text', serif;
+}
+
+.filter-toggle-btn:hover {
+  background: linear-gradient(145deg, #3d2817, #2c1810);
+  border-color: #d4af37;
+  color: #f4e4bc;
+}
+
+.filter-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.advanced-filters {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(44, 24, 16, 0.4);
+  border: 1px solid rgba(139, 69, 19, 0.2);
+  border-radius: 8px;
+  animation: slideDown 0.3s ease;
+  position: relative;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* New horizontal layout for filters */
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.2);
+}
+
+.filter-row:last-child {
+  border-bottom: none;
+}
+
+.checkbox-group.horizontal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.date-input {
+  background: rgba(139, 69, 19, 0.1);
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-family: 'Crimson Text', serif;
+  color: #f4e4bc;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+}
+
+.date-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+/* Legacy grid for backwards compatibility */
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-family: 'Cinzel', serif;
+  color: #d4af37;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.filter-input {
+  background: rgba(139, 69, 19, 0.1);
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  padding: 0.6rem;
+  font-family: 'Crimson Text', serif;
+  color: #f4e4bc;
+  transition: all 0.3s ease;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #f4e4bc;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.9rem;
+}
+
+.filter-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #d4af37;
+  cursor: pointer;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.clear-filters-btn {
+  background: linear-gradient(145deg, #8b4513, #654321);
+  border: 2px solid #d4af37;
+  color: #f4e4bc;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clear-filters-btn:hover {
+  background: linear-gradient(145deg, #d4af37, #b8941f);
+  color: #2c1810;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1200px) {
+  .filters-main-bar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  
+  .search-section {
+    flex: none;
+  }
+  
+  .campaign-buttons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .compendium-filters-compact {
+    padding: 0.75rem;
+  }
+  
+  .campaign-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .filters-grid {
+    grid-template-columns: 1fr;
+  }
+}

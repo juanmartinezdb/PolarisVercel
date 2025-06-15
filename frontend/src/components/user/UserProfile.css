@@ -1,0 +1,402 @@
+/* Overlay del modal - estilo global necesario */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1;
+}
+
+/* Contenedor principal del modal - todos los estilos encapsulados aquí */
+.user-profile-modal {
+  background: linear-gradient(135deg, #2c1810, #3d2317);
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header del modal */
+.user-profile-modal .modal-header {
+  background: linear-gradient(135deg, #3d2317, #4a2a1a);
+  padding: 24px;
+  border-bottom: 2px solid #8b4513;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.user-profile-modal .modal-header h2 {
+  margin: 0;
+  color: #f4e4bc;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.user-profile-modal .close-button {
+  background: none;
+  border: none;
+  color: #f4e4bc;
+  font-size: 24px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Hover del botón cerrar */
+.user-profile-modal .close-button:hover {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+/* Contenido del modal con scroll */
+.user-profile-modal .modal-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  margin: 0px;
+  max-width: none;
+}
+
+/* Sección del avatar y estadísticas */
+.user-profile-modal .profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding: 20px;
+  background: linear-gradient(135deg, #3d2317, #4a2a1a);
+  border-radius: 8px;
+  border: 1px solid #8b4513;
+}
+
+/* Contenedor del avatar */
+.user-profile-modal .avatar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-profile-modal .avatar-large {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #8b4513;
+  transition: border-color 0.3s ease;
+}
+
+.user-profile-modal .avatar-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-profile-modal .avatar-placeholder-large {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8b4513, #a0522d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f4e4bc;
+  font-weight: bold;
+  font-size: 36px;
+}
+
+.user-profile-modal .avatar-edit-button-profile {
+  background: linear-gradient(135deg, #d4af37, #ffd700);
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  padding: 8px 16px;
+  color: #2c1810;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.user-profile-modal .avatar-edit-button-profile:hover {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+/* Sección de estadísticas */
+.user-profile-modal .user-stats-section {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  justify-content: center;
+}
+
+.user-profile-modal .stat-card {
+  background: linear-gradient(135deg, #2c1810, #3d2317);
+  border: 1px solid #8b4513;
+  border-radius: 8px;
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.user-profile-modal .stat-icon {
+  color: #d4af37;
+  flex-shrink: 0;
+}
+
+.user-profile-modal .stat-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.user-profile-modal .stat-label {
+  color: #a0522d;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+}
+
+.user-profile-modal .stat-value {
+  color: #d4af37;
+  font-size: 18px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Sección del formulario */
+.user-profile-modal .profile-form-section {
+  background: linear-gradient(135deg, #3d2317, #4a2a1a);
+  border-radius: 8px;
+  border: 1px solid #8b4513;
+  padding: 24px;
+}
+
+.user-profile-modal .form-group {
+  margin-bottom: 20px;
+}
+
+.user-profile-modal .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.user-profile-modal .form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #f4e4bc;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.user-profile-modal .form-display {
+  padding: 12px;
+  background: rgba(44, 24, 16, 0.4);
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  color: #f4e4bc;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.user-profile-modal .form-input,
+.user-profile-modal .form-textarea,
+.user-profile-modal .form-input-profile {
+  width: 100%;
+  padding: 12px;
+  background: rgba(44, 24, 16, 0.8);
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  color: #f4e4bc;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.user-profile-modal .form-input:focus,
+.user-profile-modal .form-textarea:focus,
+.user-profile-modal .form-input-profile:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+
+.user-profile-modal .form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Footer del modal */
+.user-profile-modal .modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 20px 24px;
+  border-top: 1px solid #8b4513;
+  background: linear-gradient(135deg, #2c1810, #3d2317);
+  border-radius: 0 0 10px 10px;
+  flex-shrink: 0;
+}
+
+/* Botones */
+.user-profile-modal .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-profile-modal .btn-primary {
+  background: linear-gradient(135deg, #d4af37, #ffd700);
+  color: #2c1810;
+}
+
+.user-profile-modal .btn-primary:hover {
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+}
+
+.user-profile-modal .btn-secondary {
+  background: transparent;
+  color: #f4e4bc;
+  border: 2px solid #8b4513;
+}
+
+.user-profile-modal .btn-secondary:hover {
+  background: rgba(139, 69, 19, 0.2);
+  border-color: #a0522d;
+}
+
+.user-profile-modal .btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.user-profile-modal .btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Estilos para campos de contraseña */
+.user-profile-modal .password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.user-profile-modal .password-input-container .form-input,
+.user-profile-modal .password-input-container .form-input-profile {
+  padding-right: 45px;
+}
+
+.user-profile-modal .password-toggle {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #a0522d;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-profile-modal .password-toggle:hover {
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 10px;
+  }
+  
+  .user-profile-modal {
+    max-width: none;
+    max-height: 95vh;
+  }
+  
+  .user-profile-modal .modal-header {
+    padding: 20px;
+  }
+  
+  .user-profile-modal .modal-content {
+    padding: 20px;
+  }
+  
+  .user-profile-modal .profile-avatar-section {
+    padding: 16px;
+  }
+  
+  .user-profile-modal .user-stats-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .user-profile-modal .stat-card {
+    justify-content: center;
+  }
+  
+  .user-profile-modal .profile-form-section {
+    padding: 20px;
+  }
+  
+  .user-profile-modal .modal-footer {
+    flex-direction: column;
+    padding: 16px 20px;
+  }
+  
+  .user-profile-modal .btn {
+    justify-content: center;
+  }
+}

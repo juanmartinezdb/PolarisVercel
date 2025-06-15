@@ -1,0 +1,275 @@
+.logbook-entry {
+  background: rgba(139, 69, 19, 0.15);
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.logbook-entry:hover {
+  background: rgba(139, 69, 19, 0.25);
+  border-color: #d4af37;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.logbook-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.logbook-entry-header-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.logbook-entry-back-btn {
+  background: rgba(139, 69, 19, 0.2);
+  color: #d4af37;
+  border: 2px solid rgba(139, 69, 19, 0.4);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(3px);
+}
+
+.logbook-entry-back-btn:hover {
+  background: rgba(139, 69, 19, 0.3);
+  border-color: #d4af37;
+  transform: translateX(-2px);
+}
+
+.logbook-entry-title {
+  flex: 1;
+  text-align: center;
+  margin: 0 3rem;
+}
+
+.logbook-entry-title {
+  color: #d4af37;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  flex: 1;
+}
+
+.logbook-entry-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logbook-entry-date {
+  color: rgba(212, 175, 55, 0.8);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.logbook-entry-actions {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.logbook-entry:hover .logbook-entry-actions {
+  opacity: 1;
+}
+
+.logbook-entry-action-btn {
+  background: rgba(139, 69, 19, 0.8);
+  border: 1px solid #8b4513;
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.logbook-entry-action-icon {
+  width: 2.2rem;
+  height: 2.2rem;
+  object-fit: contain;
+  /* filter: brightness(0) saturate(100%) invert(85%) sepia(15%) saturate(1000%) hue-rotate(15deg) brightness(95%) contrast(85%); */
+  transition: filter 0.3s ease;
+}
+
+.logbook-entry-action-btn:hover {
+  /* background: rgba(139, 69, 19, 1); */
+  transform: scale(1.1);
+}
+
+.logbook-entry-action-btn.edit:hover {
+  background: rgba(212, 175, 55, 0.8);
+}
+
+
+.logbook-entry-content {
+  color: #e8dcc0;
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* Markdown Content Styles */
+.logbook-entry-h1 {
+  color: #d4af37;
+  font-size: 2rem;
+  margin: 2rem 0 1rem 0;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.logbook-entry-h2 {
+  color: #d4af37;
+  font-size: 1.6rem;
+  margin: 1.5rem 0 1rem 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.logbook-entry-h3 {
+  color: #d4af37;
+  font-size: 1.3rem;
+  margin: 1.2rem 0 0.8rem 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.logbook-entry-paragraph {
+  color: #e8dcc0;
+  margin: 1rem 0;
+  text-align: justify;
+}
+
+
+.logbook-entry-list,
+.logbook-entry-ordered-list {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.logbook-entry-list-item {
+  margin: 0.5rem 0;
+  color: #e8dcc0;
+}
+
+.logbook-entry-quote {
+  border-left: 4px solid #d4af37;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: rgba(139, 69, 19, 0.2);
+  font-style: italic;
+  color: rgba(232, 220, 192, 0.9);
+}
+
+.logbook-entry-inline-code {
+  background: rgba(139, 69, 19, 0.4);
+  color: #d4af37;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.logbook-entry-code-block {
+  background: rgba(139, 69, 19, 0.3);
+  color: #e8dcc0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.logbook-entry-pre {
+  background: rgba(139, 69, 19, 0.3);
+  border: 1px solid #8b4513;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.logbook-entry-bold {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.logbook-entry-italic {
+  color: rgba(232, 220, 192, 0.9);
+  font-style: italic;
+}
+
+.logbook-entry-link {
+  color: #87ceeb;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.logbook-entry-link:hover {
+  color: #add8e6;
+}
+
+.logbook-entry-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8b4513, transparent);
+  margin: 2rem 0;
+}
+
+.logbook-entry-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: rgba(139, 69, 19, 0.1);
+}
+
+.logbook-entry-table-header {
+  background: rgba(139, 69, 19, 0.3);
+  color: #d4af37;
+  padding: 0.75rem;
+  border: 1px solid #8b4513;
+  font-weight: bold;
+}
+
+.logbook-entry-table-cell {
+  padding: 0.75rem;
+  border: 1px solid #8b4513;
+  color: #e8dcc0;
+}
+
+.logbook-entry-table-row:nth-child(even) {
+  background: rgba(139, 69, 19, 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logbook-entry {
+    padding: 1.5rem;
+  }
+  
+  .logbook-entry-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .logbook-entry-title {
+    font-size: 1.5rem;
+  }
+  
+  .logbook-entry-actions {
+    opacity: 1;
+  }
+}

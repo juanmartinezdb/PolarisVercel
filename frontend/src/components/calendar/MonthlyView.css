@@ -1,0 +1,426 @@
+.monthly-view {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Prevenir scroll horizontal */
+}
+
+.monthly-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: linear-gradient(135deg, #3d2817 0%, #2a1810 100%);
+  border: 2px solid #8b4513;
+  border-bottom: none;
+  min-width: 0; /* Permitir que las columnas se compriman */
+}
+
+.monthly-weekday {
+  padding: 12px 8px;
+  text-align: center;
+  font-weight: bold;
+  color: #d4af37;
+  border-right: 1px solid #8b4513;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  min-width: 0; /* Permitir compresión */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.monthly-weekday:last-child {
+  border-right: none;
+}
+
+.monthly-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(auto-fit, minmax(120px, 1fr));
+  flex: 1;
+  border: 2px solid #8b4513;
+  border-top: none;
+  min-width: 0; /* Permitir que las columnas se compriman */
+  overflow: hidden;
+}
+
+.monthly-day {
+  border-right: 1px solid #8b4513;
+  border-bottom: 1px solid #8b4513;
+  background: linear-gradient(135deg, #2a1810 0%, #1f1209 100%);
+  padding: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Permitir compresión */
+  overflow: hidden;
+}
+
+.monthly-day:nth-child(7n) {
+  border-right: none;
+}
+
+.monthly-day:hover {
+  background: linear-gradient(135deg, #3d2817 0%, #2a1810 100%);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.monthly-day.other-month {
+  background: linear-gradient(135deg, #1a0f08 0%, #0f0804 100%);
+  color: #666;
+}
+
+.monthly-day.other-month .monthly-day-number {
+  color: #666;
+}
+
+.monthly-day.today {
+  background: linear-gradient(135deg, #4a3520 0%, #3d2817 100%);
+  border: 2px solid #d4af37;
+}
+
+.monthly-day.today .monthly-day-number {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.monthly-day.has-items {
+  background: linear-gradient(135deg, #2f1e12 0%, #241a0f 100%);
+}
+
+.monthly-day-number {
+  color: #f5f5dc;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+.energy-indicator {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.energy-indicator.energy-positive {
+  background: #90ee90;
+  box-shadow: 0 0 4px #90ee90;
+}
+
+.energy-indicator.energy-negative {
+  background: #ff6b6b;
+  box-shadow: 0 0 4px #ff6b6b;
+}
+
+.energy-indicator.energy-balanced {
+  background: #d4af37;
+  box-shadow: 0 0 4px #d4af37;
+}
+
+.monthly-day-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.monthly-item {
+  background: linear-gradient(145deg, #3d2817, #2c1810);
+  border: 2px solid #8b4513;
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 0.75rem;
+  color: #f5f5dc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+/* Borde naranja para energía negativa */
+.monthly-item.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+/* Borde azul para energía positiva */
+.monthly-item.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item:hover {
+  border-color: #d4af37;
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+.monthly-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.monthly-item:hover::before {
+  opacity: 1;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.task-icon {
+  font-size: 0.9rem;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.task-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: #d4af37;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.monthly-item.task-open-quest {
+  border-left: 3px solid #4CAF50;
+}
+
+.monthly-item.task-open-quest.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item.task-open-quest.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+.monthly-item.task-closed-quest {
+  border-left: 3px solid #2196F3;
+}
+
+.monthly-item.task-closed-quest.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item.task-closed-quest.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+.monthly-item.task-commission {
+  border-left: 3px solid #FF9800;
+}
+
+.monthly-item.task-commission.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item.task-commission.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+.monthly-item.task-rumor {
+  border-left: 3px solid #9C27B0;
+}
+
+.monthly-item.task-rumor.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item.task-rumor.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+.monthly-item.daily-item {
+  border-left: 3px solid #00BCD4;
+}
+
+.monthly-item.daily-item.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item.daily-item.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+.monthly-item.raid-item {
+  border-left: 3px solid #F44336;
+  font-weight: bold;
+}
+
+.monthly-item.raid-item.positive-energy {
+  border-left: 4px solid #4a90e2;
+}
+
+.monthly-item.raid-item.negative-energy {
+  border-left: 4px solid #ff6b35;
+}
+
+.monthly-item.priority-critical {
+  background: rgba(255, 68, 68, 0.2);
+  border-color: #ff4444;
+}
+
+
+.monthly-item.dragging {
+  opacity: 0.5;
+  transform: rotate(5deg);
+}
+
+.monthly-item.completed {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+.monthly-item-more {
+  background: rgba(212, 175, 55, 0.2);
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  color: #d4af37;
+  text-align: center;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .monthly-grid {
+    grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
+  }
+  
+  .monthly-day {
+    min-height: 80px;
+    padding: 4px;
+  }
+  
+  .monthly-day-number {
+    font-size: 0.9rem;
+  }
+  
+  .monthly-item {
+    font-size: 0.7rem;
+    padding: 1px 4px;
+  }
+  
+  .monthly-weekday {
+    padding: 8px 4px;
+    font-size: 0.8rem;
+    letter-spacing: 0.2px; /* Reducir spacing en pantallas pequeñas */
+  }
+}
+
+@media (max-width: 480px) {
+  .monthly-weekday {
+    font-size: 0.7rem;
+    padding: 6px 2px;
+    letter-spacing: 0.1px;
+  }
+  
+  .monthly-day {
+    min-height: 60px;
+    padding: 2px;
+  }
+  
+  .monthly-day-number {
+    font-size: 0.8rem;
+  }
+  
+  .monthly-item {
+    font-size: 0.65rem;
+    padding: 1px 2px;
+  }
+}
+
+/* Media query adicional para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .monthly-weekday {
+    font-size: 0.6rem;
+    padding: 4px 1px;
+    letter-spacing: 0;
+  }
+  
+  .monthly-day {
+    min-height: 50px;
+    padding: 1px;
+  }
+  
+  .monthly-day-number {
+    font-size: 0.7rem;
+  }
+  
+  .monthly-item {
+    font-size: 0.6rem;
+    padding: 1px;
+  }
+}
+
+
+.monthly-day.drop-target {
+  background-color: var(--accent-primary-light, rgba(74, 144, 226, 0.1));
+  border: 2px dashed var(--accent-primary);
+  transform: scale(1.02);
+  box-shadow: var(--shadow-medium);
+}
+
+.monthly-day.can-drop {
+  border: 1px dashed var(--accent-secondary, #a0aec0);
+}
+
+.monthly-item.dragging {
+  opacity: 0.5;
+  transform: rotate(5deg);
+}
+
+.task-open-quest {
+  background-color: var(--quest-open-color, #e3f2fd);
+  border-left: 3px solid var(--quest-open-border, #2196f3);
+  transition: all 0.2s ease;
+}
+
+.task-closed-quest {
+  background-color: var(--quest-closed-color, #fff3e0);
+  border-left: 3px solid var(--quest-closed-border, #ff9800);
+  transition: all 0.2s ease;
+}
+
+.monthly-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-small);
+}
+
+
+
+/* Efectos de hover para mejor UX */
+.monthly-day:hover {
+  background-color: var(--surface-hover, rgba(255, 255, 255, 0.05));
+}
+
+.monthly-day.today {
+  background-color: var(--accent-primary-light, rgba(74, 144, 226, 0.1));
+  border: 2px solid var(--accent-primary);
+}

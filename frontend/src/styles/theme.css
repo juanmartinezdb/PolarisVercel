@@ -1,0 +1,72 @@
+:root {
+  /* === COLORES PRINCIPALES === */
+  --color-primary-dark: #0a0e1a;
+  --color-primary-medium: #1a2332;
+  --color-primary-light: #2d3748;
+  
+  /* === COLORES DE ACENTO === */
+  --color-accent-gold: #ffd700;
+  --color-accent-silver: #c0c0c0;
+  --color-accent-bronze: #cd7f32;
+  --color-accent-mystical: #9d4edd;
+  --color-accent-energy: #00d4ff;
+  
+  /* === COLORES DE ESTADO === */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* === COLORES DE ENERGÍA === */
+  --color-energy-positive: #22c55e;
+  --color-energy-negative: #ef4444;
+  --color-energy-neutral: #6b7280;
+  
+  /* === GRADIENTES === */
+  --gradient-primary: linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary-medium) 100%);
+  --gradient-accent: linear-gradient(135deg, var(--color-accent-mystical) 0%, var(--color-accent-energy) 100%);
+  --gradient-gold: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+  --gradient-energy: linear-gradient(90deg, var(--color-energy-negative) 0%, var(--color-energy-neutral) 50%, var(--color-energy-positive) 100%);
+  
+  /* === TIPOGRAFÍA === */
+  --font-primary: 'Cinzel', serif;
+  --font-secondary: 'Roboto', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  /* === TAMAÑOS DE FUENTE === */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  
+  /* === ESPACIADO === */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  
+  /* === BORDES Y SOMBRAS === */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+  
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  --shadow-mystical: 0 0 20px rgba(157, 78, 221, 0.3);
+  --shadow-energy: 0 0 20px rgba(0, 212, 255, 0.3);
+  
+  /* === TRANSICIONES === */
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+  --transition-slow: 0.5s ease-in-out;
+  
+}

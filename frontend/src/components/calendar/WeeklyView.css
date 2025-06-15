@@ -1,0 +1,318 @@
+/* Weekly View - RPG Calendar Styles - Compacto */
+.weekly-view {
+  background: linear-gradient(145deg, #2c1810, #1a0f08);
+  border: 1px solid #8b4513;
+  border-radius: 6px;
+  padding: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.weekly-header {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  /* gap: 1px; */
+  /* margin-bottom: 4px; */
+  border-bottom: 1px solid #8b4513;
+}
+
+.time-column-header {
+  background: linear-gradient(145deg, #8b4513, #654321);
+  color: #d4af37;
+  /* padding: 6px 4px; */
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  border-radius: 3px;
+  font-size: 0.8rem;
+}
+
+.day-header {
+  background: linear-gradient(145deg, #3d2817, #2c1810);
+  color: #d4af37;
+  padding: 6px 4px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 3px;
+  border: 1px solid #8b4513;
+}
+
+.day-header:hover {
+  background: linear-gradient(145deg, #4a3520, #3d2817);
+  transform: translateY(-2px);
+}
+
+.day-header.selected {
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.day-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.day-number {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.1rem;
+  margin-top: 4px;
+}
+
+/* Open Quests Row - Compacto */
+.open-quests-row {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 2px;
+}
+
+/* Dailies Row - Compacto */
+.dailies-row {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 2px;
+}
+
+.dailies-section {
+  background: linear-gradient(145deg, #2a1810, #1f1209);
+  border: 1px solid #8b4513;
+  border-radius: 3px;
+  padding: 4px;
+  min-height: 40px;
+}
+
+/* Time Schedule */
+.time-schedule {
+  display: flex;
+  flex-direction: column;
+}
+
+.time-row {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  gap: 1px;
+  margin-bottom: 1px;
+}
+
+.time-label {
+  background: linear-gradient(145deg, #8b4513, #654321);
+  color: #d4af37;
+  padding: 4px;
+  text-align: center;
+  font-family: 'Crimson Text', serif;
+  font-size: 0.75rem;
+  border-radius: 3px 0 0 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+}
+
+.weekly-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.8rem;
+  color: #d4af37;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.week-navigation {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-btn {
+  background: linear-gradient(145deg, #8b4513, #654321);
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(145deg, #a0522d, #8b4513);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+  transform: translateY(-2px);
+}
+
+.days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.day-column {
+  background: linear-gradient(145deg, #3d2817, #2c1810);
+  border: 1px solid #8b4513;
+  border-radius: 6px;
+  padding: 15px;
+  min-height: 300px;
+}
+
+.day-header {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: #d4af37;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.day-date {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.9rem;
+  color: #b8941f;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.day-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.task-slot {
+  background: linear-gradient(145deg, #4a2a1a, #3d2317);
+  border: 1px solid rgba(139, 69, 19, 0.5);
+  border-radius: 4px;
+  padding: 8px;
+  min-height: 40px;
+  transition: all 0.3s ease;
+}
+
+.task-slot:hover {
+  border-color: #d4af37;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.task-slot.occupied {
+  border-left: 4px solid #d4af37;
+  background: linear-gradient(145deg, #5d3420, #4a2a1a);
+}
+
+.today {
+  border: 3px solid #d4af37;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.today .day-header {
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.5);
+}
+
+
+/* Estilos para dailies compactas */
+.dailies-section.compact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px;
+}
+
+.daily-item-compact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 6px;
+  background: rgba(139, 69, 19, 0.1);
+  border-radius: 3px;
+  font-size: 0.75rem;
+  border-left: 3px solid #8b4513;
+}
+
+.daily-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.daily-energy {
+  font-size: 0.7rem;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* Estilos para raids compactas */
+.raids-section.compact {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px;
+}
+
+/* Eliminar estilos de dailies y agregar estilos para botones de acción en raids */
+.raid-item-compact {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px;
+  background: rgba(255, 69, 0, 0.1);
+  border-radius: 3px;
+  margin-bottom: 2px;
+  font-size: 10px;
+}
+
+.raid-actions {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 1px 3px;
+  border-radius: 2px;
+  font-size: 8px;
+  transition: background-color 0.2s;
+}
+
+.complete-btn:hover {
+  background-color: rgba(34, 197, 94, 0.2);
+}
+
+.skip-btn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+.raid-time {
+  font-size: 0.7rem;
+  color: #c9a96e;
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.raid-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+.raid-energy {
+  font-size: 0.7rem;
+  color: #d4af37;
+  font-weight: bold;
+}
+
+/* Estilos para las filas de raids */
+.raids-row {
+  display: grid;
+  grid-template-columns: 120px repeat(7, 1fr);
+  border-bottom: 1px solid rgba(139, 69, 19, 0.3);
+  min-height: 60px;
+}

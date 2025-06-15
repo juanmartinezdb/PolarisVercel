@@ -1,0 +1,118 @@
+/* Estilos específicos para el modal de eliminación de campañas */
+.campaign-delete-modal {
+  max-width: 600px;
+  width: 90%;
+}
+
+.campaign-delete-options {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(139, 69, 19, 0.1);
+  border: 1px solid rgba(139, 69, 19, 0.3);
+  border-radius: 8px;
+}
+
+.campaign-delete-options h3 {
+  color: #d4af37;
+  margin: 0 0 16px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.option-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(244, 228, 188, 0.05);
+  border: 2px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  user-select: none;
+}
+
+.option-item:hover {
+  background: rgba(244, 228, 188, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.option-item input[type="radio"] {
+  margin: 0;
+  margin-top: 2px;
+  accent-color: #d4af37;
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+.option-item input[type="radio"]:checked + .option-content {
+  color: #f4e4bc;
+}
+
+.option-item:has(input[type="radio"]:checked) {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: #d4af37;
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.3);
+}
+
+.option-item input[type="radio"]:focus {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+.option-item:active {
+  transform: scale(0.98);
+}
+
+.option-content {
+  flex: 1;
+  color: #c9b037;
+  transition: color 0.3s ease;
+}
+
+.option-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.option-description {
+  font-size: 13px;
+  line-height: 1.4;
+  color: #a0956b;
+}
+
+.option-description strong {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .campaign-delete-modal {
+    width: 95%;
+    margin: 10px;
+  }
+  
+  .option-item {
+    padding: 10px;
+  }
+  
+  .option-title {
+    font-size: 13px;
+  }
+  
+  .option-description {
+    font-size: 12px;
+  }
+}

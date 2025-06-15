@@ -1,0 +1,373 @@
+.logbook-editor {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2c1810 0%, #1a0f08 100%);
+  background-image: url('../../assets/images/pergamino-fondo.png');
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+}
+
+.logbook-editor::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(44, 24, 16, 0.85);
+}
+
+.logbook-editor > * {
+  position: relative;
+}
+
+.logbook-editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background: rgba(139, 69, 19, 0.2);
+  border-bottom: 2px solid #8b4513;
+  backdrop-filter: blur(5px);
+}
+
+.logbook-editor-header h2 {
+  color: #d4af37;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  margin: 0;
+}
+
+.logbook-editor-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.logbook-editor-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  /* background: linear-gradient(135deg, #d4af37 0%, #b8941f 100%); */
+  color: #2c1810;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logbook-editor-btn:hover {
+  background: linear-gradient(135deg, #f4cf47 0%, #d4af37 100%);
+
+}
+
+.logbook-editor-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.logbook-editor-btn.preview-toggle {
+  background: linear-gradient(135deg, #ebeb87 0%, #b48146 100%);
+  /* color: #1a0f08; */
+}
+
+.logbook-editor-btn.preview-toggle:hover {
+  background: linear-gradient(135deg, #e6e4ad 0%, #ebb487 100%);
+}
+
+.logbook-editor-btn.cancel {
+  background: linear-gradient(135deg, #ff6b6b 0%, #e555557e 100%);
+  /* color: white; */
+}
+
+.logbook-editor-btn.cancel:hover {
+  background: linear-gradient(135deg, #ff8e8e 0%, #ff6b6b 100%);
+}
+.logbook-editor-btn.save {
+  background: linear-gradient(135deg, #a4ff6b 0%, #55e5ab7e 100%);
+  /* color: white; */
+}
+
+.logbook-editor-btn.save:hover {
+  background: linear-gradient(135deg, #b2ff8e 0%, #6bff89 100%);
+}
+
+.logbook-editor-form {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logbook-editor-row {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  align-items: flex-end;
+}
+
+.logbook-editor-field {
+  flex: 1;
+}
+
+.logbook-editor-field.date-field {
+  flex: 0 0 200px;
+}
+
+.logbook-editor-field label {
+  display: block;
+  color: #d4af37;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.logbook-editor-input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #8b4513;
+  border-radius: 6px;
+  background: rgba(139, 69, 19, 0.1);
+  color: #e8dcc0;
+  font-size: 1rem;
+  backdrop-filter: blur(5px);
+}
+
+.logbook-editor-input::placeholder {
+  color: rgba(232, 220, 192, 0.6);
+}
+
+.logbook-editor-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.logbook-editor-content {
+  height: calc(100vh - 300px);
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.markdown-toolbar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(139, 69, 19, 0.2);
+  border: 2px solid #8b4513;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  flex-wrap: wrap;
+}
+
+.markdown-btn {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #8b4513;
+  border-radius: 4px;
+  background: rgba(139, 69, 19, 0.3);
+  color: #d4af37;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.markdown-btn:hover {
+  background: rgba(212, 175, 55, 0.3);
+  transform: translateY(-1px);
+}
+
+.logbook-editor-textarea {
+  flex: 1;
+  padding: 1.5rem;
+  border: 2px solid #8b4513;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  background: rgba(139, 69, 19, 0.1);
+  color: #e8dcc0;
+  font-size: 1rem;
+  font-family: 'Courier New', monospace;
+  line-height: 1.6;
+  resize: none;
+  backdrop-filter: blur(5px);
+}
+
+.logbook-editor-textarea::placeholder {
+  color: rgba(232, 220, 192, 0.6);
+  font-family: inherit;
+}
+
+.logbook-editor-textarea:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+}
+
+.logbook-editor-preview {
+  flex: 1;
+  padding: 2rem;
+  border: 2px solid #8b4513;
+  border-radius: 8px;
+  background: rgba(139, 69, 19, 0.1);
+  overflow-y: auto;
+  backdrop-filter: blur(5px);
+}
+
+/* Preview Markdown Styles */
+.preview-h1 {
+  color: #d4af37;
+  font-size: 2rem;
+  margin: 2rem 0 1rem 0;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.preview-h2 {
+  color: #d4af37;
+  font-size: 1.6rem;
+  margin: 1.5rem 0 1rem 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.preview-h3 {
+  color: #d4af37;
+  font-size: 1.3rem;
+  margin: 1.2rem 0 0.8rem 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+.preview-paragraph {
+  color: #e8dcc0;
+  margin: 1rem 0;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.preview-list,
+.preview-ordered-list {
+  color: #e8dcc0;
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.preview-list-item {
+  margin: 0.5rem 0;
+}
+
+.preview-quote {
+  border-left: 4px solid #d4af37;
+  margin: 1.5rem 0;
+  padding: 1rem 1.5rem;
+  background: rgba(139, 69, 19, 0.2);
+  font-style: italic;
+  color: rgba(232, 220, 192, 0.9);
+}
+
+.preview-inline-code {
+  background: rgba(139, 69, 19, 0.4);
+  color: #d4af37;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.preview-code-block {
+  background: rgba(139, 69, 19, 0.3);
+  color: #e8dcc0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+.preview-pre {
+  background: rgba(139, 69, 19, 0.3);
+  border: 1px solid #8b4513;
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.preview-bold {
+  color: #d4af37;
+  font-weight: bold;
+}
+
+.preview-italic {
+  color: rgba(232, 220, 192, 0.9);
+  font-style: italic;
+}
+
+.preview-link {
+  color: #87ceeb;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.preview-link:hover {
+  color: #add8e6;
+}
+
+.preview-divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #8b4513, transparent);
+  margin: 2rem 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .logbook-editor-form {
+    padding: 1rem;
+  }
+  
+  .logbook-editor-content {
+    height: calc(100vh - 280px);
+  }
+}
+
+@media (max-width: 768px) {
+  .logbook-editor-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .logbook-editor-header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .logbook-editor-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .logbook-editor-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .logbook-editor-field.date-field {
+    flex: 1;
+  }
+  
+  .markdown-toolbar {
+    gap: 0.25rem;
+  }
+  
+  .markdown-btn {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+  
+  .logbook-editor-content {
+    height: calc(100vh - 350px);
+  }
+}

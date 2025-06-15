@@ -1,0 +1,71 @@
+.app-layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0f08 0%, #2c1810 100%);
+  background-image: url('../../assets/images/pergamino-fondo.png');
+  background-size: cover;
+  background-attachment: fixed;
+  position: relative;
+  
+  /* Variables CSS para alturas dinámicas */
+  --topbar-height: 70px;
+  --energy-bar-height: 40px;
+}
+
+.app-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(26, 15, 8, 0.8);
+}
+
+.app-layout > * {
+  position: relative;
+}
+
+/* Hacer que TopBar y EnergyBalanceBar se mantengan fijos */
+.app-layout > .top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: auto;
+}
+
+.app-layout > .energy-balance-bar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding-top: calc(var(--topbar-height, 70px));
+  transition: padding-top 0.3s ease;
+}
+
+.main-content {
+  min-height: calc(100vh - 200px);
+  padding: 0;
+  padding-top: calc(var(--topbar-height, 70px) + var(--energy-bar-height, 40px));
+  overflow-x: hidden;
+  position: relative;
+  transition: padding-top 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .app-layout {
+    --topbar-height: 120px;
+    --energy-bar-height: 40px;
+  }
+  
+  .main-content {
+    min-height: calc(100vh - 250px);
+    padding-top: calc(var(--topbar-height) + var(--energy-bar-height));
+  }
+  
+  .app-layout > .energy-balance-bar-container {
+    padding-top: var(--topbar-height);
+  }
+}

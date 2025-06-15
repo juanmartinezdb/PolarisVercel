@@ -1,0 +1,104 @@
+/* frontend/src/components/ui/Toast.css */
+
+.toast-container {
+  position: fixed;
+  top: 15px; /* Ajustado para estar debajo del TopBar + EnergyBalanceBar */
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px 20px;
+  min-width: 320px;
+  max-width: 420px;
+  
+  font-family: 'MedievalSharp', cursive;
+  font-size: 1rem;
+  color: #3a2e1d;
+  background: linear-gradient(145deg, #f3e9d2, #e7d8b7);
+  border: 3px solid transparent;
+  border-image-slice: 4;
+  border-image-width: 4px;
+  border-radius: 5px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.2);
+
+  cursor: pointer;
+  pointer-events: auto;
+  
+  transform: translateX(120%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.toast.toast-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast.toast-leaving {
+  transform: translateX(120%);
+  opacity: 0;
+}
+
+/* --- COLORES TEMÁTICOS PARA EL BORDE --- */
+/* Usamos border-image para un look más rústico */
+.toast-success {
+  border-image-source: linear-gradient(to right, #6a9c34, #b5a642);
+}
+.toast-error {
+  border-image-source: linear-gradient(to right, #a02a2a, #6b2020);
+}
+.toast-warning {
+  border-image-source: linear-gradient(to right, #d48d2e, #b46b1f);
+}
+.toast-info {
+  border-image-source: linear-gradient(to right, #4a7a9e, #3a5a7e);
+}
+
+.toast-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4));
+}
+
+.toast-message {
+  flex: 1;
+  font-weight: bold; /* La fuente es fina, así que la hacemos bold */
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+.toast-close-btn {
+  background: none;
+  border: none;
+  color: #5c4b33;
+  font-family: 'Times New Roman', Times, serif; /* Una X más clásica */
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.toast-close-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .toast-container {
+    top: 170px; /* Ajustado para móvil considerando el padding-top mayor */
+    right: 10px;
+    left: 10px;
+  }
+  .toast {
+    min-width: auto;
+    max-width: none;
+  }
+}
