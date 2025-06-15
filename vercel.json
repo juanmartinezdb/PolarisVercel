@@ -4,32 +4,14 @@
   "outputDirectory": "./dist",
   "installCommand": "npm install",
   "devCommand": "npm run dev",
-  "routes": [
-    {
-        "src": "/",
-        "dest": "/"
-    },
-    {
-        "src": "/logbook",
-        "dest": "/"
-    },
-    {
-        "src": "/calendar",
-        "dest": "/"
-    },
-    {
-        "src": "/compendium",
-        "dest": "/"
-    }
-  ],
   "rewrites": [
     {
       "source": "/assets/(.*)",
       "destination": "/assets/$1"
     },
     {
-      "source": "/((?!api).*)",
-      "destination": "/index.html"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ],
   "headers": [
