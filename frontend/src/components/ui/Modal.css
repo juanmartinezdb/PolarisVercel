@@ -13,6 +13,10 @@
   backdrop-filter: blur(2px);
 }
 
+.campaign-description{
+  color: wheat;
+}
+
 .form-modal {
   background: 
     linear-gradient(rgba(44, 24, 16, 0.85), rgba(61, 35, 23, 0.85)),
