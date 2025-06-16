@@ -249,3 +249,187 @@
     width: 100%;
   }
 }
+/* -------------- */
+.campaign-card {
+  background: linear-gradient(145deg, #3d2817, #2c1810);
+  border: 2px solid #8b4513;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.campaign-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('../../assets/images/papel-viejo.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.05;
+}
+
+.campaign-card-content {
+  position: relative;
+}
+
+.campaign-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border-color: #d4af37;
+}
+
+.campaign-card.default {
+  border-color: #ffd700;
+  background: linear-gradient(145deg, #4a3319, #3d2817);
+}
+
+.campaign-card.default::after {
+  content: '👑';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.2rem;
+}
+
+.campaign-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.campaign-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #8b4513;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+}
+
+.campaign-actions {
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.campaign-card:hover .campaign-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  background: rgba(139, 69, 19, 0.8);
+  border: 1px solid #8b4513;
+  color: #f4e4bc;
+  padding: 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+.action-btn:hover {
+  background: rgba(212, 175, 55, 0.8);
+  color: #2c1810;
+}
+
+.action-btn.edit:hover {
+  background: rgba(70, 130, 180, 0.8);
+}
+
+.action-btn.delete:hover {
+  background: rgba(220, 20, 60, 0.8);
+}
+
+.campaign-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.campaign-description {
+  font-family: 'Crimson Text', serif;
+  color: #c9a96e;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.campaign-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #8b4513;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-value {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  color: #d4af37;
+  font-weight: 600;
+  display: block;
+}
+
+.stat-label {
+  font-family: 'Crimson Text', serif;
+  font-size: 0.9rem;
+  color: #8b7355;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.campaign-dates {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(139, 69, 19, 0.3);
+  font-family: 'Crimson Text', serif;
+  font-size: 0.85rem;
+  color: #8b7355;
+}
+
+@media (max-width: 768px) {
+  .campaign-card {
+    padding: 1rem;
+  }
+  
+  .campaign-name {
+    font-size: 1.2rem;
+  }
+  
+  .campaign-stats {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .campaign-dates {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
